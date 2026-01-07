@@ -2,6 +2,7 @@ import { navigate } from "astro:transitions/client";
 import { site } from "./site";
 
 const currentUrl = new URL(window.location.origin);
+const durationCopiedLink = 1000;
 
 export const Actions = {
     copyLink: async (currentElement: HTMLButtonElement) => {
@@ -13,14 +14,16 @@ export const Actions = {
 
         const titleButton = currentElement.children.item(1);
 
-        // if (!navigator.share) {
-        //     titleButton.innerHTML = "Link disalin";
-        //     navigator.clipboard.writeText(currentUrl.origin);
-        // } else {
-        //     navigator.share(shareData);
-        // }
-
-        alert(window.isSecureContext);
+        if (!navigator.share) {
+            titleButton.innerHTML = "Link disalin";
+            setTimeout(() => {
+                titleButton.innerHTML = "Bagikan Link";
+                console.log(titleButton);
+            }, durationCopiedLink);
+            navigator.clipboard.writeText(currentUrl.origin);
+        } else {
+            navigator.share(shareData);
+        }
     },
     shareToWhatsapp: () => {
         const TextMessage = `${site.name}\n${currentUrl}`;

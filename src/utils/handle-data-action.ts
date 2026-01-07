@@ -5,11 +5,18 @@ function bindActions() {
 
     Buttons.forEach((el) => {
         const Button = el as HTMLButtonElement;
-        const dataAction = Button.dataset.action;
+        const keyAction = Button.dataset.action;
 
-        Button.addEventListener("click", () => {
-            Actions[dataAction](Button);
-        });
+        if (keyAction) {
+            Button.addEventListener("click", () => {
+                const action = Actions[keyAction];
+                if (typeof action != "function") {
+                    console.warn(`Action ${keyAction} not found.`);
+                    return;
+                }
+                action(Button);
+            });
+        }
     });
 }
 
