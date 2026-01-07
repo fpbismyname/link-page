@@ -1,0 +1,29 @@
+---
+import type { BlockInterface, ListLinkInterface } from "@datas/blocks.type";
+import clsx from "clsx";
+
+// Type & Interfaces
+interface Props {
+    content: ListLinkInterface[];
+}
+
+// Vars
+const { content } = Astro.props;
+---
+
+<section class="relative">
+    <ul class="menu menu-vertical w-full gap-2">
+        {
+            content.map((link) => {
+                return (
+                    <li>
+                        <a href={link.href} class={clsx("btn mx-4", link.style)}>
+                            <link.icon class="me-2" />
+                            {link.label}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</section>

@@ -1,0 +1,47 @@
+---
+import { site } from "@datas/site";
+import clsx from "clsx";
+import XIcon from "@icons/lucide/x.svg";
+import ShareIcon from "@icons/lucide/share2.svg";
+
+// Type & Interfaces
+interface Props {
+    class?: string;
+}
+// Vars
+const { class: customClass, ...rest } = Astro.props;
+---
+
+<button
+    class={clsx("transition-all btn btn-soft btn-primary btn-circle", customClass)}
+    {...rest}
+    onclick="modalCopy.showModal()"
+>
+    <ShareIcon />
+</button>
+
+<dialog id="modalCopy" class="modal">
+    <div class="modal-box w-full max-w-xs">
+        <h3 class="text-xl font-bold mb-4 text-center">Ajak teman ke sini</h3>
+        <div class="flex flex-col gap-2">
+            {
+                site.shareOptions.map((item) => {
+                    return (
+                        <button class="btn btn-soft btn-primary justify-start" data-action={item.action}>
+                            <item.icon />
+                            {item.label}
+                        </button>
+                    );
+                })
+            }
+        </div>
+        <div class="modal-action justify-center">
+            <form method="dialog">
+                <button class="btn btn-circle btn-secondary btn-soft"><XIcon /></button>
+            </form>
+        </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>

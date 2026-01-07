@@ -1,0 +1,37 @@
+---
+import type { BlockItem, FooterTextInterface, ListLinkInterface } from "@datas/blocks.type";
+import Header from "./Blocks/Header.astro";
+import HeaderProfile from "./Blocks/HeaderProfile.astro";
+import type { HeaderProfileInterface } from "@datas/blocks.type";
+import ListLink from "./Blocks/ListLink.astro";
+import FooterText from "./Blocks/FooterText.astro";
+
+// Type & Interfaces
+interface Props {
+    blocks: BlockItem[];
+}
+
+// Vars
+const { blocks } = Astro.props;
+---
+
+{
+    blocks.map((block) => {
+        switch (block.type) {
+            case "header":
+                return <Header {...(block.content as any)} />;
+            case "header-profile":
+                return <HeaderProfile content={block.content as HeaderProfileInterface} />;
+            case "list-link":
+                return <ListLink content={block.content as ListLinkInterface[]} />;
+            case "list-menu":
+                return (
+                    <section>
+                        <h1>list Menu</h1>
+                    </section>
+                );
+            case "footer-text":
+                return <FooterText content={block.content as FooterTextInterface} />;
+        }
+    })
+}

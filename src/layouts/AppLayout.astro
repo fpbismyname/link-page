@@ -1,0 +1,54 @@
+---
+import { site } from "@datas/site";
+import { DockMenu } from "@datas/blocks";
+import { clsx } from "clsx";
+import CommonHead from "@components/CommonHead.astro";
+import { FadeIn } from "../utils/transition-animate/fade-in";
+import Alert from "@components/Alert.astro";
+import "../styles/global.css";
+
+// Type & Interfaces
+interface Props {
+    title?: string;
+}
+
+// Vars
+const { title } = Astro.props;
+const currentRoute = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={site.lang}>
+    <head>
+        <CommonHead {title} />
+    </head>
+    <body>
+        <div class="container mx-auto">
+            <div class="relative min-h-screen flex flex-col max-w-md mx-auto md:shadow-xl md:shadow-base-300">
+                <div class="flex flex-1 flex-col" transition:animate={FadeIn}>
+                    <slot />
+                    <div class="dock relative mt-auto" transition:animate="none">
+                        {
+                            DockMenu.map((item) => {
+                                const selectedRoute = currentRoute === item.href;
+                                return (
+                                    <a href={item.href} class="text-base-content">
+                                        <item.icon class={clsx(selectedRoute ? "fill-primary/25" : "")} />
+                                        <span
+                                            class="dock-label transition-all duration-500 font-bold"
+                                            hidden={!selectedRoute}
+                                        >
+                                            {item.label}
+                                        </span>
+                                    </a>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Alert />
+        <script src="../utils/handle-data-action.ts"></script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+---
+import type { FooterTextInterface } from "@datas/blocks.type";
+
+// Type & Interfaces
+interface Props {
+    content: FooterTextInterface;
+}
+
+// Vars
+const { content } = Astro.props;
+---
+
+<footer class="relative mt-auto text-center">
+    <small>{content.text}</small>
+</footer>

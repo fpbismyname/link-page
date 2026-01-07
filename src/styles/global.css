@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "./themes.css";
+@import "./transition-animate.css";
+
+@theme {
+    --font-sans: "Vend Sans", sans-serif;
+}
