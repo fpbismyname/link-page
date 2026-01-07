@@ -1,5 +1,5 @@
 ---
-import type { BlockItem, FooterTextInterface, ListLinkInterface } from "@datas/blocks.type";
+import type { BlockItem, FooterTextInterface, HeaderInterface, ListLinkInterface } from "@datas/blocks.type";
 import Header from "./Blocks/Header.astro";
 import HeaderProfile from "./Blocks/HeaderProfile.astro";
 import type { HeaderProfileInterface } from "@datas/blocks.type";
@@ -19,7 +19,7 @@ const { blocks } = Astro.props;
     blocks.map((block) => {
         switch (block.type) {
             case "header":
-                return <Header {...(block.content as any)} />;
+                return <Header content={block.content as HeaderInterface} />;
             case "header-profile":
                 return <HeaderProfile content={block.content as HeaderProfileInterface} />;
             case "list-link":

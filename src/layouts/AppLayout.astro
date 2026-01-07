@@ -23,32 +23,32 @@ const currentRoute = Astro.url.pathname;
         <CommonHead {title} />
     </head>
     <body>
+        <Alert />
         <div class="container mx-auto">
             <div class="relative min-h-screen flex flex-col max-w-md mx-auto md:shadow-xl md:shadow-base-300">
-                <div class="flex flex-1 flex-col" transition:animate={FadeIn}>
+                <div class="flex bg-blue-50 flex-col" transition:animate={FadeIn}>
                     <slot />
-                    <div class="dock relative mt-auto" transition:animate="none">
-                        {
-                            DockMenu.map((item) => {
-                                const selectedRoute = currentRoute === item.href;
-                                return (
-                                    <a href={item.href} class="text-base-content">
-                                        <item.icon class={clsx(selectedRoute ? "fill-primary/25" : "")} />
-                                        <span
-                                            class="dock-label transition-all duration-500 font-bold"
-                                            hidden={!selectedRoute}
-                                        >
-                                            {item.label}
-                                        </span>
-                                    </a>
-                                );
-                            })
-                        }
-                    </div>
+                </div>
+                <div class="dock mt-auto relative bg-base-200 z-10" transition:animate="none">
+                    {
+                        DockMenu.map((item) => {
+                            const selectedRoute = currentRoute === item.href;
+                            return (
+                                <a href={item.href} class="text-base-content">
+                                    <item.icon class={clsx(selectedRoute ? "fill-primary/25" : "")} />
+                                    <span
+                                        class="dock-label transition-all duration-500 font-bold"
+                                        hidden={!selectedRoute}
+                                    >
+                                        {item.label}
+                                    </span>
+                                </a>
+                            );
+                        })
+                    }
                 </div>
             </div>
         </div>
-        <Alert />
         <script src="../utils/handle-data-action.ts"></script>
     </body>
 </html>

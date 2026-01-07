@@ -50,7 +50,7 @@ export const Blocks: BlockInterface = {
         {
             type: "header",
             content: {
-                title: "",
+                title: "Daftar Menu",
                 rightItem: [
                     {
                         icon: MenuIcon,

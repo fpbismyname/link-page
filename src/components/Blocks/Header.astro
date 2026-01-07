@@ -1,8 +1,19 @@
 ---
-// Type & Interfaces
-interface Props {}
+import type { HeaderInterface } from "@datas/blocks.type";
 
-const props = Astro.props;
+// Type & Interfaces
+interface Props {
+    content: HeaderInterface;
+}
+
+const { content } = Astro.props;
 ---
 
-<section></section>
+<section class="sticky top-0 w-full p-4 bg-base-200">
+    <div class="grid grid-cols-[1fr_auto]">
+        <div>
+            <h3 class="font-bold text-xl">{content.title}</h3>
+        </div>
+        <div></div>
+    </div>
+</section>
