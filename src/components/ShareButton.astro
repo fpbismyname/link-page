@@ -29,7 +29,7 @@ const { class: customClass, ...rest } = Astro.props;
                     return (
                         <button class="btn btn-soft btn-primary justify-start" data-action={item.action}>
                             <item.icon />
-                            {item.label}
+                            <span>{item.label}</span>
                         </button>
                     );
                 })

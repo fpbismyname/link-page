@@ -8,7 +8,7 @@ function bindActions() {
         const dataAction = Button.dataset.action;
 
         Button.addEventListener("click", () => {
-            Actions[dataAction]();
+            Actions[dataAction](Button);
         });
     });
 }
