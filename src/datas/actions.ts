@@ -25,7 +25,7 @@ export const Actions = {
             navigator.share(shareData);
         }
     },
-    copyLinkMenu: async (currentElement: HTMLButtonElement, params) => {
+    copyLinkMenu: async (currentElement: HTMLButtonElement, params: any) => {
         const Link = `${currentUrl.origin + currentUrl.pathname}${params.href ? `#${params.href}` : null}`;
 
         const shareData = {

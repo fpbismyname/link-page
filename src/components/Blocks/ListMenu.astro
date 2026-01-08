@@ -26,7 +26,11 @@ const { content } = Astro.props;
                             <button
                                 class="btn btn-ghost btn-circle"
                                 data-action="copyLinkMenu"
-                                data-params={{ title: item.title, description: item.description, href: item.id }}
+                                data-params={JSON.stringify({
+                                    title: item.title,
+                                    description: item.description,
+                                    href: item.id
+                                })}
                             >
                                 <ShareIcon />
                             </button>
