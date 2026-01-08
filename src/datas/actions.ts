@@ -25,7 +25,7 @@ export const Actions = {
         }
     },
     copyLinkMenu: async (currentElement: HTMLButtonElement, params: any) => {
-        const Link = `${currentUrl}menu#${params.href}`;
+        const Link = `${currentUrl.origin}menu#${params.href}`;
 
         const shareData = {
             title: params.title ?? site.name,
@@ -45,7 +45,7 @@ export const Actions = {
         }
     },
     shareToWhatsapp: () => {
-        const TextMessage = `${site.shareMessage}${currentUrl}`;
+        const TextMessage = `${site.shareMessage}${currentUrl.origin}`;
         const waText = encodeURIComponent(TextMessage);
         window.open(`https://wa.me?text=${waText}`, "_blank");
     }
