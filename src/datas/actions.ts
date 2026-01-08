@@ -1,4 +1,3 @@
-import { navigate } from "astro:transitions/client";
 import { site } from "./site";
 import { Toast } from "../utils/toastify";
 
