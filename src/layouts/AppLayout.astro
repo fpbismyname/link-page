@@ -24,12 +24,6 @@ const { title } = Astro.props;
         <CommonHead {title} />
     </head>
     <body>
-        <div
-            class="absolute bottom-1/12 z-10 w-fit h-fit bg-accent text-accent-content p-2 rounded-box"
-            transition:animate="none"
-        >
-            {now}
-        </div>
         <div class="min-h-screen relative max-w-md mx-auto md:shadow-xl md:shadow-base-300">
             <div class="flex flex-1 flex-col pb-24" transition:animate={FadeIn}>
                 <slot />
