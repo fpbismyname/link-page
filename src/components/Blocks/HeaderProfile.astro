@@ -8,9 +8,9 @@ import clsx from "clsx";
 import { format, isWithinInterval } from "date-fns";
 import { id } from "date-fns/locale";
 import Str from "lodash";
-import { fromZonedTime } from "date-fns-tz";
+import { toZonedTime } from "date-fns-tz";
 
-const now = fromZonedTime(new Date(), site.timezone);
+const now = toZonedTime(new Date(), site.timezone);
 
 // Type & Interfaces
 interface content {

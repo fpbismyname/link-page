@@ -1,5 +1,5 @@
 import { set } from "date-fns";
-import { fromZonedTime } from "date-fns-tz";
+import { toZonedTime } from "date-fns-tz";
 import type { MenuInterface, SiteInterface } from "./site.type";
 import ShareIcon from "@icons/lucide/share2.svg";
 import WhatsappIcon from "@icons/simple-icon/whatsapp.svg";
@@ -13,7 +13,7 @@ import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
 const currentTimezone = "Asia/Jakarta";
-const now = fromZonedTime(new Date(), currentTimezone);
+const now = toZonedTime(new Date(), currentTimezone);
 
 export const site: SiteInterface = {
     timezone: currentTimezone,
