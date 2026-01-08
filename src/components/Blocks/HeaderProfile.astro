@@ -2,12 +2,15 @@
 import OpeningHoursButton from "@components/OpeningHoursButton.astro";
 import ShareButton from "@components/ShareButton.astro";
 import type { HeaderProfileInterface } from "@datas/blocks.type";
-import { site, now } from "@datas/site";
+import { site } from "@datas/site";
 import { Image } from "astro:assets";
 import clsx from "clsx";
 import { format, isWithinInterval } from "date-fns";
 import { id } from "date-fns/locale";
 import Str from "lodash";
+import { fromZonedTime } from "date-fns-tz";
+
+const now = fromZonedTime(new Date(), site.timezone);
 
 // Type & Interfaces
 interface content {

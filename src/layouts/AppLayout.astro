@@ -1,10 +1,13 @@
 ---
-import { now, site } from "@datas/site";
+import { site } from "@datas/site";
 import Dock from "@components/Dock.astro";
 import CommonHead from "@components/CommonHead.astro";
 import { FadeIn } from "../utils/transition-animate/fade-in";
 import "../styles/global.css";
 import "toastify-js/src/toastify.css";
+import { fromZonedTime } from "date-fns-tz";
+
+const now = fromZonedTime(new Date(), site.timezone);
 
 // Type & Interfaces
 interface Props {
@@ -33,6 +36,6 @@ const { title } = Astro.props;
             </div>
         </div>
         <Dock />
-        <script src="../utils/handle-data-action.ts"></script>
+        <script src="../utils/script.ts"></script>
     </body>
 </html>

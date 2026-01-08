@@ -8,6 +8,7 @@ export type itemType = Array<
 export type shareItemType = Array<Partial<Record<"id" | "label" | "icon" | "action" | "images", any>>>;
 
 export interface SiteInterface {
+    timezone: string;
     lang: string;
     name: string;
     description: string;

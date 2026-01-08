@@ -1,11 +1,14 @@
 ---
-import { site, now } from "@datas/site";
+import { site } from "@datas/site";
 import clsx from "clsx";
 import XIcon from "@icons/lucide/x.svg";
 import CalendarClock from "@icons/lucide/calendar-clock.svg";
 import Str from "lodash";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
+import { fromZonedTime } from "date-fns-tz";
+
+const now = fromZonedTime(new Date(), site.timezone);
 
 // Type & Interfaces
 interface Props {

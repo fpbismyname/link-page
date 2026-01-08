@@ -12,10 +12,10 @@ import GrabIcon from "@icons/simple-icon/grab.svg";
 import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
-const timezone = "Asia/Jakarta";
-export const now = fromZonedTime(new Date(), timezone);
+const now = new Date();
 
 export const site: SiteInterface = {
+    timezone: "Asia/Jakarta",
     lang: "id",
     name: "Coreeatery",
     description: "",

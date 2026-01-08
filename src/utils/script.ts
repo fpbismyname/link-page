@@ -1,4 +1,8 @@
 import { Actions } from "@datas/actions";
+import { site } from "@datas/site";
+import { fromZonedTime } from "date-fns-tz";
+
+// Handle action click
 
 function bindActions() {
     const Buttons = document.querySelectorAll("button[data-action]");
@@ -26,3 +30,5 @@ function bindActions() {
 }
 
 document.addEventListener("astro:page-load", bindActions);
+
+export const now = fromZonedTime(new Date(), site.timezone);
