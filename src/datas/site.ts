@@ -12,7 +12,7 @@ import GrabIcon from "@icons/simple-icon/grab.svg";
 import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
-const currentTimezone = "Africa/Asmara";
+const currentTimezone = "Asia/Jakarta";
 const now = fromZonedTime(new Date(), currentTimezone);
 
 export const site: SiteInterface = {
