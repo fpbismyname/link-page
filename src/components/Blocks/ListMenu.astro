@@ -23,7 +23,11 @@ const { content } = Astro.props;
                             {item.description && <p class="text-sm text-base-content/75">{item.description}</p>}
                         </div>
                         <div>
-                            <button class="btn btn-ghost btn-circle" data-action="copyLinkMenu" data-params={item.id}>
+                            <button
+                                class="btn btn-ghost btn-circle"
+                                data-action="copyLinkMenu"
+                                data-params={{ title: item.title, description: item.description, href: item.id }}
+                            >
                                 <ShareIcon />
                             </button>
                         </div>
