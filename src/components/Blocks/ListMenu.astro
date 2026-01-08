@@ -1,0 +1,50 @@
+---
+import type { ListMenuInterface } from "@datas/blocks.type";
+import { Image } from "astro:assets";
+import ShareIcon from "@icons/lucide/share2.svg";
+
+// Type & Interfaces
+interface Props {
+    content: ListMenuInterface[];
+}
+
+// Vars
+const { content } = Astro.props;
+---
+
+<section class="relative">
+    {
+        content.map((item) => {
+            return (
+                <div class="flex flex-col px-4 scroll-mt-20 mb-6" id={item.id}>
+                    <div class="flex flex-row justify-between my-4 items-center">
+                        <div>
+                            {item.title && <h3 class="text-xl font-bold">{item.title}</h3>}
+                            {item.description && <p class="text-sm text-base-content/75">{item.description}</p>}
+                        </div>
+                        <div>
+                            <button class="btn btn-ghost btn-circle" data-action="copyLinkMenu" data-params={item.id}>
+                                <ShareIcon />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6">
+                        {Array.isArray(item.pictures) &&
+                            item.pictures?.map((image, index) => {
+                                return (
+                                    <Image
+                                        src={image}
+                                        alt={`Menu ${item.title} - ${index}`}
+                                        width={image.width}
+                                        height={image.height}
+                                        class="rounded-box shadow shadow-secondary/35"
+                                        loading="lazy"
+                                    />
+                                );
+                            })}
+                    </div>
+                </div>
+            );
+        })
+    }
+</section>

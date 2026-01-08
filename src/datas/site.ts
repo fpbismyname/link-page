@@ -65,6 +65,7 @@ export const site: SiteInterface = {
             icon: WhatsappIcon
         }
     ],
+    shareMessage: `Coreeatery by Cafedeh\n`,
     links: [
         {
             label: "Kunjungi Lokasi Kami",
@@ -129,7 +130,6 @@ export const menu: MenuInterface[] = [
     {
         id: "signature-ice-cream",
         title: "Signature Ice cream",
-        description: "Less sugar",
         pictures: filterImportGlobImage("signature-ice-cream", AllMenu)
     },
     {
@@ -140,7 +140,7 @@ export const menu: MenuInterface[] = [
     {
         id: "malika-coffee-latte",
         title: "Malika Coffee Latte",
-        pictures: filterImportGlobImage("malike-coffee-latte", AllMenu)
+        pictures: filterImportGlobImage("malika-coffee-latte", AllMenu)
     },
     {
         id: "dpollen",

@@ -6,6 +6,7 @@ function bindActions() {
     Buttons.forEach((el) => {
         const Button = el as HTMLButtonElement;
         const keyAction = Button.dataset.action;
+        const params = Button.dataset.params;
 
         if (keyAction) {
             Button.addEventListener("click", () => {
@@ -14,7 +15,11 @@ function bindActions() {
                     console.warn(`Action ${keyAction} not found.`);
                     return;
                 }
-                action(Button);
+                if (params) {
+                    action(Button, params);
+                } else {
+                    action(Button);
+                }
             });
         }
     });

@@ -9,11 +9,36 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<section class="sticky top-0 w-full p-4 bg-base-200">
-    <div class="grid grid-cols-[1fr_auto]">
+<section class="sticky top-0 w-full p-4 bg-base-200 z-10">
+    <div class="grid grid-cols-[1fr_auto] items-center">
+        <h3 class="font-bold text-xl">{content.title}</h3>
         <div>
-            <h3 class="font-bold text-xl">{content.title}</h3>
+            {
+                content.rightItem.map((item) => {
+                    if (Array.isArray(item.children)) {
+                        return (
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" class="btn btn-sm btn-circle btn-primary" role="button">
+                                    <item.icon class="w-5" />
+                                </div>
+                                <ul
+                                    tabindex="-1"
+                                    class="dropdown-content menu w-64 text-base bg-base-100 shadow-xl shadow-secondary/50 rounded-box"
+                                >
+                                    <li class="menu-title text-primary">Kategori Menu</li>
+                                    {item.children?.map((dropmenu) => {
+                                        return (
+                                            <li>
+                                                <a href={dropmenu.href}>{dropmenu.label}</a>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        );
+                    }
+                })
+            }
         </div>
-        <div></div>
     </div>
 </section>

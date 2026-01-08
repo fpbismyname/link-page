@@ -1,14 +1,15 @@
 import { navigate } from "astro:transitions/client";
 import { site } from "./site";
+import { Toast } from "../utils/toastify";
 
-const currentUrl = new URL(window.location.origin);
+const currentUrl = new URL(window.location.toString());
 const durationCopiedLink = 1000;
 
 export const Actions = {
     copyLink: async (currentElement: HTMLButtonElement) => {
         const shareData = {
             title: site.name,
-            text: site.description,
+            text: site.shareMessage,
             url: currentUrl.origin
         };
 
@@ -18,15 +19,34 @@ export const Actions = {
             titleButton.innerHTML = "Link disalin";
             setTimeout(() => {
                 titleButton.innerHTML = "Bagikan Link";
-                console.log(titleButton);
             }, durationCopiedLink);
             navigator.clipboard.writeText(currentUrl.origin);
         } else {
             navigator.share(shareData);
         }
     },
+    copyLinkMenu: async (currentElement: HTMLButtonElement, href) => {
+        const Link = `${currentUrl.origin + currentUrl.pathname}${href ? `#${href}` : null}`;
+
+        const shareData = {
+            title: site.name,
+            text: site.shareMessage,
+            url: Link
+        };
+
+        if (!navigator.share) {
+            currentElement.disabled = true;
+            Toast("success", "Link menu disalin.");
+            setTimeout(() => {
+                currentElement.disabled = false;
+            }, durationCopiedLink);
+            navigator.clipboard.writeText(Link);
+        } else {
+            navigator.share(shareData);
+        }
+    },
     shareToWhatsapp: () => {
-        const TextMessage = `${site.name}\n${currentUrl}`;
+        const TextMessage = `${site.shareMessage}${currentUrl}`;
         const waText = encodeURIComponent(TextMessage);
         window.open(`https://wa.me?text=${waText}`, "_blank");
     }

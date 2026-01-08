@@ -1,4 +1,5 @@
 import BerandaIcon from "@icons/lucide/house.svg";
+import MenuCategory from "@icons/lucide/menu.svg";
 import MenuIcon from "@icons/lucide/clipboard-list.svg";
 
 import type {
@@ -7,7 +8,8 @@ import type {
     FooterTextInterface,
     HeaderInterface,
     HeaderProfileInterface,
-    ListLinkInterface
+    ListLinkInterface,
+    ListMenuInterface
 } from "./blocks.type";
 import { menu, site } from "./site";
 
@@ -50,17 +52,27 @@ export const Blocks: BlockInterface = {
         {
             type: "header",
             content: {
-                title: "Daftar Menu",
+                title: "Menu",
                 rightItem: [
                     {
-                        icon: MenuIcon,
+                        icon: MenuCategory,
                         children: menu.map((item) => ({
-                            id: item.id,
+                            href: `#${item.id}`,
                             label: item.title
                         }))
                     }
                 ]
             } as HeaderInterface
+        },
+        {
+            type: "list-menu",
+            content: menu as ListMenuInterface[]
+        },
+        {
+            type: "footer-text",
+            content: {
+                text: "Selamat menikmati hidangan kami."
+            } as FooterTextInterface
         }
     ]
 };

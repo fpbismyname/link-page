@@ -5,3 +5,7 @@
 @theme {
     --font-sans: "Vend Sans", sans-serif;
 }
+
+html {
+    @apply scroll-smooth;
+}

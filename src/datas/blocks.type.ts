@@ -1,5 +1,5 @@
 import type { SvgComponent } from "astro/types";
-import type { itemType } from "./site.type";
+import type { itemType, MenuInterface } from "./site.type";
 
 export interface DockMenuInterface {
     label: string;
@@ -14,7 +14,7 @@ export interface BlockInterface extends Record<string, any> {
 }
 export interface BlockItem {
     type: BlockType;
-    content: HeaderProfileInterface | ListLinkInterface[] | FooterTextInterface | HeaderInterface;
+    content: HeaderProfileInterface | ListLinkInterface[] | FooterTextInterface | HeaderInterface | ListMenuInterface[];
 }
 
 export interface HeaderInterface {
@@ -36,6 +36,8 @@ export interface ListLinkInterface {
     icon?: SvgComponent;
     style?: string;
 }
+
+export interface ListMenuInterface extends MenuInterface {}
 
 export interface FooterTextInterface {
     text?: string;

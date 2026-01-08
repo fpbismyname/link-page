@@ -33,7 +33,10 @@ const today = format(now, "EEEE", { locale: id });
 
 <dialog id="modalOpeningHours" class="modal">
     <div class="modal-box w-full max-w-xs">
-        <h3 class="text-xl font-bold mb-4 text-center">Buka & Tutup</h3>
+        <h3 class="text-xl font-bold mb-6 text-center">
+            <CalendarClock class="inline-flex self-center me-2" />
+            Buka & Tutup
+        </h3>
         <div class="grid grid-cols-2 gap-4">
             {
                 openingHours.map((item) => {
@@ -42,12 +45,12 @@ const today = format(now, "EEEE", { locale: id });
                         const openTime = format(item.open, "HH:mm");
                         const closeTime = format(item.close, "HH:mm");
                         return (
-                            <div
-                                class={clsx(
-                                    "p-2 px-4 rounded-box w-full",
-                                    isToday ? "bg-secondary/75 text-secondary-content" : "border border-secondary/50"
+                            <div class={clsx("p-2 px-4 rounded-box w-full indicator", "border border-primary/50")}>
+                                {isToday && (
+                                    <span class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content">
+                                        Hari ini
+                                    </span>
                                 )}
-                            >
                                 <div>
                                     <h1 class="text-md font-semibold">{Str.capitalize(item.day)}</h1>
                                     <small class="text-md">
@@ -58,12 +61,12 @@ const today = format(now, "EEEE", { locale: id });
                         );
                     } else {
                         return (
-                            <div
-                                class={clsx(
-                                    "p-2 px-4 rounded-box w-full",
-                                    isToday ? "bg-secondary/75 text-secondary-content" : "border border-secondary/50"
+                            <div class={clsx("p-2 px-4 rounded-box w-full indicator", "border border-primary/50")}>
+                                {isToday && (
+                                    <span class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content">
+                                        Hari ini
+                                    </span>
                                 )}
-                            >
                                 <div>
                                     <h1 class="text-md font-semibold">{Str.capitalize(item.day)}</h1>
                                     <small>Libur</small>

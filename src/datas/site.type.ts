@@ -19,6 +19,7 @@ export interface SiteInterface {
         bgCover?: ImageMetadata;
     };
     shareOptions: shareItemType;
+    shareMessage: string;
     links: ListLinkInterface[];
     footer: string;
 }
