@@ -26,7 +26,7 @@ export const Actions = {
         }
     },
     copyLinkMenu: async (currentElement: HTMLButtonElement, params: any) => {
-        const Link = `${currentUrl}/menu#${params.href}`;
+        const Link = `${currentUrl}menu#${params.href}`;
 
         const shareData = {
             title: params.title ?? site.name,
