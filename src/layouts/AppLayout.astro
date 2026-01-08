@@ -1,7 +1,6 @@
 ---
 import { site } from "@datas/site";
-import { DockMenu } from "@datas/blocks";
-import { clsx } from "clsx";
+import Dock from "@components/Dock.astro";
 import CommonHead from "@components/CommonHead.astro";
 import { FadeIn } from "../utils/transition-animate/fade-in";
 import "../styles/global.css";
@@ -14,7 +13,6 @@ interface Props {
 
 // Vars
 const { title } = Astro.props;
-const currentRoute = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -28,21 +26,7 @@ const currentRoute = Astro.url.pathname;
                 <slot />
             </div>
         </div>
-        <div class="dock bg-base-200 max-w-md mx-auto z-10" transition:animate="none">
-            {
-                DockMenu.map((item) => {
-                    const selectedRoute = currentRoute === item.href;
-                    return (
-                        <a href={item.href} class="text-base-content">
-                            <item.icon class={clsx(selectedRoute ? "fill-primary/25" : "")} />
-                            <span class="dock-label transition-all duration-500 font-bold" hidden={!selectedRoute}>
-                                {item.label}
-                            </span>
-                        </a>
-                    );
-                })
-            }
-        </div>
+        <Dock />
         <script src="../utils/handle-data-action.ts"></script>
     </body>
 </html>

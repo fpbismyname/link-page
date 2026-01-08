@@ -1,25 +1,26 @@
 {
-  "name": "link-page",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/toastify-js": "^1.12.4",
-    "astro": "^5.16.6",
-    "clsx": "^2.1.1",
-    "daisyui": "^5.5.14",
-    "date-fns": "^4.1.0",
-    "lodash": "^4.17.21",
-    "tailwindcss": "^4.1.18",
-    "toastify-js": "^1.12.0"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.17.21"
-  }
+    "name": "link-page",
+    "type": "module",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.1.18",
+        "@types/toastify-js": "^1.12.4",
+        "astro": "^5.16.6",
+        "clsx": "^2.1.1",
+        "daisyui": "^5.5.14",
+        "date-fns": "^4.1.0",
+        "date-fns-tz": "^3.2.0",
+        "lodash": "^4.17.21",
+        "tailwindcss": "^4.1.18",
+        "toastify-js": "^1.12.0"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.17.21"
+    }
 }

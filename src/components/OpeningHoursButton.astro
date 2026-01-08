@@ -1,5 +1,5 @@
 ---
-import { site } from "@datas/site";
+import { site, now } from "@datas/site";
 import clsx from "clsx";
 import XIcon from "@icons/lucide/x.svg";
 import CalendarClock from "@icons/lucide/calendar-clock.svg";
@@ -19,7 +19,6 @@ const openingHours = Object.entries(site.openingHours).map(([day, times]) => ({
     close: times.close
 }));
 
-const now = new Date();
 const today = format(now, "EEEE", { locale: id });
 ---
 

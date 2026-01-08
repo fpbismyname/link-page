@@ -1,4 +1,5 @@
 import { set } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
 import type { MenuInterface, SiteInterface } from "./site.type";
 import ShareIcon from "@icons/lucide/share2.svg";
 import WhatsappIcon from "@icons/simple-icon/whatsapp.svg";
@@ -11,7 +12,8 @@ import GrabIcon from "@icons/simple-icon/grab.svg";
 import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
-const now = new Date();
+const timezone = "Asia/Jakarta";
+export const now = fromZonedTime(new Date(), timezone);
 
 export const site: SiteInterface = {
     lang: "id",
@@ -96,7 +98,7 @@ export const site: SiteInterface = {
             style: "justify-start btn-soft btn-primary"
         }
     ],
-    footer: `© ${new Date().getFullYear()} Coreeatery by Cafedeh`
+    footer: `© ${now.getFullYear()} Coreeatery by Cafedeh`
 };
 
 const AllMenu: [string, ImageMetadata][] = Object.entries(

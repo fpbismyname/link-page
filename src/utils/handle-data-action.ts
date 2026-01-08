@@ -6,7 +6,7 @@ function bindActions() {
     Buttons.forEach((el) => {
         const Button = el as HTMLButtonElement;
         const keyAction = Button.dataset.action;
-        const params = JSON.parse(Button.dataset.params);
+        const params = Button.dataset.params ? JSON.parse(Button.dataset.params) : null;
 
         if (keyAction) {
             Button.addEventListener("click", () => {

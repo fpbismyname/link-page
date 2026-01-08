@@ -2,7 +2,7 @@
 import OpeningHoursButton from "@components/OpeningHoursButton.astro";
 import ShareButton from "@components/ShareButton.astro";
 import type { HeaderProfileInterface } from "@datas/blocks.type";
-import { site } from "@datas/site";
+import { site, now } from "@datas/site";
 import { Image } from "astro:assets";
 import clsx from "clsx";
 import { format, isWithinInterval } from "date-fns";
@@ -16,7 +16,6 @@ interface content {
 
 // Vars
 const { content } = Astro.props;
-const now = new Date();
 const today = format(now, "EEEE", { locale: id });
 const todayOpeningHours = site.openingHours[Str.lowerCase(today)];
 const isOpen = isWithinInterval(now, {
@@ -39,14 +38,19 @@ const cafeStatus = isOpen ? "Buka" : "Tutup";
     />
     <div class="flex flex-col items-center">
         <!-- Avatar -->
-        <div class="avatar indicator">
+        <div class={clsx("avatar indicator")}>
             <span
                 class={clsx(
                     "indicator-item indicator-bottom indicator-center badge badge-soft badge-outline",
                     isOpen ? "badge-success" : "badge-error"
                 )}>{cafeStatus}</span
             >
-            <div class="w-24 rounded-full shadow-xl shadow-accent">
+            <div
+                class={clsx(
+                    "w-24 rounded-full shadow-xl shadow-accent border",
+                    isOpen ? "border-success" : "border-error"
+                )}
+            >
                 <Image src={content.profilePicture} alt={`Profile picture ${content.title}`} width={500} height={500} />
             </div>
         </div>

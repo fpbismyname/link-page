@@ -1,0 +1,35 @@
+---
+import { DockMenu } from "@datas/blocks";
+---
+
+<nav class="dock bg-base-200 max-w-md mx-auto z-10" transition:animate="none">
+    {
+        DockMenu.map((item) => {
+            return (
+                <a href={item.href} class="text-base-content">
+                    <item.icon class="dock-icon" />
+                    <span class="dock-label font-bold hidden">{item.label}</span>
+                </a>
+            );
+        })
+    }
+</nav>
+
+<script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        const currentRoute = window.location.href;
+        const DockEl = document.querySelectorAll(".dock a");
+        DockEl.forEach((el) => {
+            const selectedRoute = el.href;
+            const dockLabel = el.querySelector(".dock-label");
+            dockLabel.classList.remove("hidden");
+            const dockIcon = el.querySelector(".dock-icon");
+            if (selectedRoute == currentRoute) {
+                dockIcon.classList.add("fill-primary/25");
+                dockLabel.classList.add("text-xs");
+            } else {
+                dockLabel.classList.add("text-[0px]");
+            }
+        });
+    });
+</script>
