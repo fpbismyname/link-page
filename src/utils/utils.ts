@@ -26,4 +26,6 @@ function bindActions() {
     });
 }
 
-document.addEventListener("astro:page-load", bindActions);
+document.addEventListener("astro:page-load", () => {
+    bindActions();
+});

@@ -9,6 +9,7 @@ import { DockMenu } from "@datas/blocks";
                 <a href={item.href} class="text-base-content">
                     <item.icon class="dock-icon" />
                     <span class="dock-label font-bold hidden">{item.label}</span>
+                    <div data-dock-spinner />
                 </a>
             );
         })
@@ -33,5 +34,22 @@ import { DockMenu } from "@datas/blocks";
             }
         });
     }
+    function loadingDock(params) {
+        const targetRoute = params.to.pathname;
+        const DockEl = document.querySelectorAll(".dock a");
+        DockEl.forEach((el) => {
+            const elHref = new URL(el.href);
+            const dockLabel = el.querySelector(".dock-label");
+            const dockIcon = el.querySelector(".dock-icon");
+
+            if (targetRoute === elHref.pathname) {
+                dockIcon.classList.add("fill-primary/25");
+                dockIcon.classList.add("animate-pulse");
+            } else {
+                dockLabel.classList.add("text-[0px]");
+            }
+        });
+    }
     document.addEventListener("astro:page-load", updateDock);
+    document.addEventListener("astro:before-preparation", (params) => loadingDock(params));
 </script>
