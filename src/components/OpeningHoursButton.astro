@@ -47,7 +47,13 @@ const today = format(now, "EEEE", { locale: id });
                         const openTime = format(item.open, "HH:mm");
                         const closeTime = format(item.close, "HH:mm");
                         return (
-                            <div class={clsx("p-2 px-4 rounded-box w-full indicator", "border border-primary/50")}>
+                            <div
+                                class={clsx(
+                                    "p-2 px-4 rounded-box w-full indicator",
+                                    "border border-primary/50",
+                                    isToday ? "border-2" : ""
+                                )}
+                            >
                                 {isToday && (
                                     <span class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content">
                                         Hari ini

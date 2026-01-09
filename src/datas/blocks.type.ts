@@ -7,14 +7,20 @@ export interface DockMenuInterface {
     href: string;
 }
 
-type BlockType = "header-profile" | "header" | "list-link" | "list-menu" | "footer-text";
+type BlockType = "header-profile" | "header" | "list-link" | "list-menu" | "footer-text" | "fab";
 
 export interface BlockInterface extends Record<string, any> {
     [key: string]: BlockItem[];
 }
 export interface BlockItem {
     type: BlockType;
-    content: HeaderProfileInterface | ListLinkInterface[] | FooterTextInterface | HeaderInterface | ListMenuInterface[];
+    content:
+        | HeaderProfileInterface
+        | ListLinkInterface[]
+        | FooterTextInterface
+        | HeaderInterface
+        | ListMenuInterface[]
+        | FabInterface;
 }
 
 export interface HeaderInterface {
@@ -41,4 +47,17 @@ export interface ListMenuInterface extends MenuInterface {}
 
 export interface FooterTextInterface {
     text?: string;
+}
+
+export interface FabInterface {
+    icon: SvgComponent;
+    children: {
+        title: string;
+        children: Array<{
+            icon?: SvgComponent;
+            label: string;
+            action?: string;
+            href?: string;
+        }>;
+    };
 }

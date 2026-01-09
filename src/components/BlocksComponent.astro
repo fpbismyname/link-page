@@ -1,6 +1,7 @@
 ---
 import type {
     BlockItem,
+    FabInterface,
     FooterTextInterface,
     HeaderInterface,
     ListLinkInterface,
@@ -12,6 +13,7 @@ import type { HeaderProfileInterface } from "@datas/blocks.type";
 import ListLink from "./Blocks/ListLink.astro";
 import FooterText from "./Blocks/FooterText.astro";
 import ListMenu from "./Blocks/ListMenu.astro";
+import Fab from "./Blocks/Fab.astro";
 
 // Type & Interfaces
 interface Props {
@@ -35,6 +37,8 @@ const { blocks } = Astro.props;
                 return <ListMenu content={block.content as ListMenuInterface[]} />;
             case "footer-text":
                 return <FooterText content={block.content as FooterTextInterface} />;
+            case "fab":
+                return <Fab content={block.content as FabInterface} />;
         }
     })
 }

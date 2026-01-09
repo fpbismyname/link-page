@@ -1,10 +1,12 @@
 import BerandaIcon from "@icons/lucide/house.svg";
 import MenuCategory from "@icons/lucide/menu.svg";
 import MenuIcon from "@icons/lucide/clipboard-list.svg";
+import ArrowUpFromLine from "@icons/lucide/arrow-up-from-line.svg";
 
 import type {
     BlockInterface,
     DockMenuInterface,
+    FabInterface,
     FooterTextInterface,
     HeaderInterface,
     HeaderProfileInterface,
@@ -50,21 +52,6 @@ export const Blocks: BlockInterface = {
     ],
     menu: [
         {
-            type: "header",
-            content: {
-                title: "Menu",
-                rightItem: [
-                    {
-                        icon: MenuCategory,
-                        children: menu.map((item) => ({
-                            href: `#${item.id}`,
-                            label: item.title
-                        }))
-                    }
-                ]
-            } as HeaderInterface
-        },
-        {
             type: "list-menu",
             content: menu as ListMenuInterface[]
         },
@@ -73,6 +60,19 @@ export const Blocks: BlockInterface = {
             content: {
                 text: "Selamat menikmati hidangan kami."
             } as FooterTextInterface
+        },
+        {
+            type: "fab",
+            content: {
+                icon: MenuCategory,
+                children: {
+                    title: "Kategori menu",
+                    children: menu.map((item) => ({
+                        label: item.title,
+                        href: `#${item.id}`
+                    }))
+                }
+            } as FabInterface
         }
     ]
 };

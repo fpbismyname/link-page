@@ -137,7 +137,7 @@ export const menu: MenuInterface[] = [
     },
     {
         id: "caffeine-addict",
-        title: "Caffeine Addict (Hot/Cold)",
+        title: "Caffeine Addict",
         pictures: filterImportGlobImage("caffeine-addict", AllMenu)
     },
     {

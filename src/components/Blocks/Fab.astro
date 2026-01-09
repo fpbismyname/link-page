@@ -1,0 +1,36 @@
+---
+import type { FabInterface } from "@datas/blocks.type";
+
+interface Props {
+    content: FabInterface;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="fixed w-full max-w-md h-full pointer-events-none">
+    <div class="relative flex flex-col w-full h-full items-end justify-end py-24 px-8">
+        <div class="dropdown dropdown-end dropdown-top pointer-events-auto">
+            <div tabindex="0" role="button" class="btn btn-xl btn-primary btn-circle">
+                <content.icon />
+            </div>
+            <ul class="dropdown-content menu bg-base-100 shadow-md shadow-base-content/35 w-64 mb-4 rounded-box">
+                {content.children.title && <li class="menu-title text-primary font-bold">{content.children.title}</li>}
+                {
+                    content.children.children.map((item) => {
+                        if (item.href) {
+                            return (
+                                <li>
+                                    <a href={item.href}>{item.label ?? <item.icon />}</a>
+                                </li>
+                            );
+                        }
+                        if (item.action) {
+                            return <button data-action={item.action}>{item.label ?? <item.icon />}</button>;
+                        }
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+</div>
