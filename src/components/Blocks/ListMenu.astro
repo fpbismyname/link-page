@@ -2,6 +2,7 @@
 import type { ListMenuInterface } from "@datas/blocks.type";
 import { Image } from "astro:assets";
 import ShareIcon from "@icons/lucide/share2.svg";
+import clsx from "clsx";
 
 // Type & Interfaces
 interface Props {
@@ -17,14 +18,20 @@ const { content } = Astro.props;
         content.map((item) => {
             return (
                 <div class="flex flex-col px-4 mb-6" id={item.id}>
-                    <div class="flex flex-row justify-between my-6 items-center">
+                    <div
+                        class={clsx(
+                            "flex flex-row justify-between my-6 gap-6",
+                            item.description ? null : "items-center"
+                        )}
+                    >
                         <div>
                             {item.title && <h3 class="text-2xl font-bold">{item.title}</h3>}
                             {item.description && <p class="text-sm text-base-content/75">{item.description}</p>}
                         </div>
-                        <div class="tooltip tooltip-left" data-tip="Bagikan menu">
+                        <div>
                             <button
-                                class="btn btn-soft btn-circle"
+                                class="btn btn-soft btn-circle tooltip tooltip-left"
+                                data-tip="Bagikan menu"
                                 data-action="copyLinkMenu"
                                 data-params={JSON.stringify({
                                     title: item.title,
@@ -36,20 +43,43 @@ const { content } = Astro.props;
                             </button>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-6">
-                        {Array.isArray(item.pictures) &&
-                            item.pictures?.map((image, index) => {
-                                return (
-                                    <Image
-                                        src={image}
-                                        alt={`Menu ${item.title} - ${index}`}
-                                        width={image.width}
-                                        height={image.height}
-                                        class="rounded-box shadow shadow-secondary/35"
-                                        loading="lazy"
-                                    />
-                                );
-                            })}
+                    <div class="flex flex-col gap-6">
+                        {/* Menu image */}
+                        {Array.isArray(item.children) && item.type === "images" && (
+                            <div class="grid grid-cols-1 gap-6">
+                                {item.children?.map((image, index) => {
+                                    return (
+                                        <Image
+                                            src={image}
+                                            alt={`Menu ${item.title} - ${index}`}
+                                            width={image.width}
+                                            height={image.height}
+                                            class="rounded-box shadow shadow-secondary/35"
+                                            loading="lazy"
+                                        />
+                                    );
+                                })}
+                            </div>
+                        )}
+                        {/* Menu text */}
+                        {Array.isArray(item.children) && item.type === "text" && (
+                            <ul class="flex flex-col list-none">
+                                {item.children?.map((item, index) => {
+                                    return (
+                                        <li class="flex flex-col mb-4">
+                                            <div class="flex items-center">
+                                                <span class="whitespace-nowrap">{item.name}</span>
+                                                <span class="divider w-full mx-2 pt-4 m-0" />
+                                                <span class="whitespace-nowrap">{item.price}</span>
+                                            </div>
+                                            {item.description && (
+                                                <small class="text-base-content/75">{item.description}</small>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        )}
                     </div>
                 </div>
             );

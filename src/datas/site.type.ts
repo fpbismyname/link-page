@@ -28,6 +28,7 @@ export interface SiteInterface {
 export interface MenuInterface {
     id?: string;
     title: string;
+    type: "images" | "text";
     description?: string;
-    pictures: ImageMetadata | ImageMetadata[];
+    children: ImageMetadata | ImageMetadata[] | Array<Partial<Record<"name" | "description" | "price", any>>>;
 }

@@ -16,20 +16,23 @@ import { DockMenu } from "@datas/blocks";
 </nav>
 
 <script is:inline>
-    document.addEventListener("astro:page-load", () => {
-        const currentRoute = window.location.href;
+    function updateDock() {
+        const currentRoute = new URL(window.location.href);
         const DockEl = document.querySelectorAll(".dock a");
         DockEl.forEach((el) => {
-            const selectedRoute = el.href;
+            const elHref = new URL(el.href);
             const dockLabel = el.querySelector(".dock-label");
             dockLabel.classList.remove("hidden");
             const dockIcon = el.querySelector(".dock-icon");
-            if (selectedRoute == currentRoute) {
+
+            if (currentRoute.pathname === elHref.pathname) {
                 dockIcon.classList.add("fill-primary/25");
                 dockLabel.classList.add("text-xs");
             } else {
                 dockLabel.classList.add("text-[0px]");
             }
         });
-    });
+    }
+    document.addEventListener("DOMContentLoaded", updateDock);
+    document.addEventListener("astro:page-load", updateDock);
 </script>

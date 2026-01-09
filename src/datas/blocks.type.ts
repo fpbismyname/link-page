@@ -53,11 +53,6 @@ export interface FabInterface {
     icon: SvgComponent;
     children: {
         title: string;
-        children: Array<{
-            icon?: SvgComponent;
-            label: string;
-            action?: string;
-            href?: string;
-        }>;
+        children: Array<Partial<Record<"icon" | "label" | "action" | "href" | "type", any>>>;
     };
 }

@@ -113,66 +113,79 @@ export const menu: MenuInterface[] = [
     {
         id: "nusantara",
         title: "Nusantara",
-        pictures: filterImportGlobImage("nusantara", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("nusantara", AllMenu)
     },
     {
         id: "habanero-signature",
         title: "Habanero Signature",
-        pictures: filterImportGlobImage("habanero-signature", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("habanero-signature", AllMenu)
     },
     {
         id: "snacks",
         title: "Snacks",
-        pictures: filterImportGlobImage("snacks", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("snacks", AllMenu)
     },
     {
         id: "dessert",
         title: "Dessert",
-        pictures: filterImportGlobImage("dessert", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("dessert", AllMenu)
     },
     {
         id: "signature-ice-cream",
         title: "Signature Ice cream",
-        pictures: filterImportGlobImage("signature-ice-cream", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("signature-ice-cream", AllMenu)
     },
     {
         id: "caffeine-addict",
         title: "Caffeine Addict",
-        pictures: filterImportGlobImage("caffeine-addict", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("caffeine-addict", AllMenu)
     },
     {
         id: "malika-coffee-latte",
         title: "Malika Coffee Latte",
-        pictures: filterImportGlobImage("malika-coffee-latte", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("malika-coffee-latte", AllMenu)
     },
     {
         id: "dpollen",
         title: "D'Pollen",
-        pictures: filterImportGlobImage("dpollen", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("dpollen", AllMenu)
     },
     {
         id: "mix-it-up",
         title: "Mix It Up",
-        pictures: filterImportGlobImage("mix-it-up", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("mix-it-up", AllMenu)
     },
     {
         id: "summer-breeze",
         title: "Summer Breeze",
-        pictures: filterImportGlobImage("summer-breeze", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("summer-breeze", AllMenu)
     },
     {
         id: "the-last-supper",
         title: "The Last Supper",
-        pictures: filterImportGlobImage("the-last-supper", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("the-last-supper", AllMenu)
     },
     {
         id: "shizuoka-japanese-matcha",
         title: "Shizuoka Japanese Matcha",
-        pictures: filterImportGlobImage("shizuoka-japanese-matcha", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("shizuoka-japanese-matcha", AllMenu)
     },
     {
         id: "paket-tahun-baru",
         title: "Paket Tahun Baru",
-        pictures: filterImportGlobImage("paket-tahun-baru", AllMenu)
+        type: "images",
+        children: filterImportGlobImage("paket-tahun-baru", AllMenu)
     }
 ];

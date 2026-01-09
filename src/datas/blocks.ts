@@ -69,7 +69,9 @@ export const Blocks: BlockInterface = {
                     title: "Kategori menu",
                     children: menu.map((item) => ({
                         label: item.title,
-                        href: `#${item.id}`
+                        href: `#${item.id}`,
+                        action: "scrollTo",
+                        type: "anchor"
                     }))
                 }
             } as FabInterface
