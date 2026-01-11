@@ -4,11 +4,11 @@ import type { MenuInterface, SiteInterface } from "./site.type";
 import ShareIcon from "@icons/lucide/share2.svg";
 import WhatsappIcon from "@icons/simple-icon/whatsapp.svg";
 import Favicon from "@images/brand/favicon.ico";
-import Logo from "@images/brand/logo.png";
-import BgCover from "@images/brand/bg-cover.webp";
+import Logo from "@images/brand/logo.jpg";
+import BgCover from "@images/brand/bg-cover.jpg";
 import MapsIcon from "@icons/simple-icon/maps.svg";
 import ReservasiIcon from "@icons/lucide/calendar-days.svg";
-import GrabIcon from "@icons/simple-icon/grab.svg";
+import GojekIcon from "@icons/simple-icon/gojek.svg";
 import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
@@ -20,9 +20,9 @@ const reservationTemplate = encodeURIComponent('Halo kak, saya mau reservasi mej
 export const site: SiteInterface = {
     timezone: currentTimezone,
     lang: "id",
-    name: "Coreeatery",
+    name: "Baeco Cafe",
     description: "",
-    slogan: "Savor the taste",
+    slogan: "Time together",
     picture: {
         logo: Logo,
         favicon: Favicon,
@@ -30,32 +30,32 @@ export const site: SiteInterface = {
     },
     openingHours: {
         senin: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
+            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
             close: set(now, { hours: 22, minutes: 0, seconds: 0 })
         },
         selasa: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
+            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
             close: set(now, { hours: 22, minutes: 0, seconds: 0 })
         },
         rabu: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
+            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
             close: set(now, { hours: 22, minutes: 0, seconds: 0 })
         },
         kamis: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
+            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
             close: set(now, { hours: 22, minutes: 0, seconds: 0 })
         },
         jumat: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
+            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
             close: set(now, { hours: 22, minutes: 0, seconds: 0 })
         },
         sabtu: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: set(now, { hours: 9, minutes: 0, seconds: 0 }),
+            close: set(now, { hours: 24, minutes: 0, seconds: 0 })
         },
         minggu: {
-            open: set(now, { hours: 8, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: set(now, { hours: 9, minutes: 0, seconds: 0 }),
+            close: set(now, { hours: 24, minutes: 0, seconds: 0 })
         }
     },
     shareOptions: [
@@ -70,38 +70,38 @@ export const site: SiteInterface = {
             icon: WhatsappIcon
         }
     ],
-    shareMessage: `Coreeatery by Cafedeh\n`,
+    shareMessage: `Baeco Cafe - Cianjur\n`,
     links: [
         {
             label: "Kunjungi Lokasi Kami",
-            href: "",
+            href: "https://maps.app.goo.gl/YYEsydhmmdkhYs4K9",
             external: true,
             icon: MapsIcon,
             style: "justify-start btn-primary"
         },
         {
             label: "Reservasi Meja",
-            href: `https://wa.me/628888888888?text=${reservationTemplate}`,
+            href: `https://wa.me/6282221177319?text=${reservationTemplate}`,
             external: true,
             icon: ReservasiIcon,
             style: "justify-start btn-soft btn-primary"
         },
         {
-            label: "Pesan di GrabFood",
-            href: "",
+            label: "Pesan di GoFood",
+            href: "https://gofood.link/a/MyQECUq",
             external: true,
-            icon: GrabIcon,
+            icon: GojekIcon,
             style: "justify-start btn-soft btn-primary"
         },
         {
             label: "Instagram Kami",
-            href: "",
+            href: "https://www.instagram.com/__baeco?igsh=MW5vemc3MG5jdTduOQ==",
             external: true,
             icon: InstagramIcon,
             style: "justify-start btn-soft btn-primary"
         }
     ],
-    footer: `© ${now.getFullYear()} Coreeatery by Cafedeh`
+    footer: `© ${now.getFullYear()} Baeco cafe - Cianjur`
 };
 
 const AllMenu: [string, ImageMetadata][] = Object.entries(
