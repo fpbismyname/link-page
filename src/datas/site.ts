@@ -14,6 +14,8 @@ import { filterImportGlobImage } from "../utils/filter-import-glob-image";
 
 const currentTimezone = "Asia/Jakarta";
 const now = toZonedTime(new Date(), currentTimezone);
+const reservationTemplate = encodeURIComponent('Halo kak, saya mau reservasi meja ya');
+
 
 export const site: SiteInterface = {
     timezone: currentTimezone,
@@ -79,7 +81,7 @@ export const site: SiteInterface = {
         },
         {
             label: "Reservasi Meja",
-            href: "",
+            href: `https://wa.me/628888888888?text=${reservationTemplate}`,
             external: true,
             icon: ReservasiIcon,
             style: "justify-start btn-soft btn-primary"
