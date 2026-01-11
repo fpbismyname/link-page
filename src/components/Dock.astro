@@ -8,7 +8,7 @@ import { DockMenu } from "@datas/blocks";
             return (
                 <a href={item.href} class="text-base-content">
                     <item.icon class="dock-icon" />
-                    <span class="dock-label font-bold hidden">{item.label}</span>
+                    <span class="dock-label">{item.label}</span>
                     <div data-dock-spinner />
                 </a>
             );
@@ -28,9 +28,7 @@ import { DockMenu } from "@datas/blocks";
 
             if (currentRoute.pathname === elHref.pathname) {
                 dockIcon.classList.add("fill-primary/25");
-                dockLabel.classList.add("text-xs");
-            } else {
-                dockLabel.classList.add("text-[0px]");
+dockLabel.classList.add("font-bold");
             }
         });
     }
@@ -45,8 +43,6 @@ import { DockMenu } from "@datas/blocks";
             if (targetRoute === elHref.pathname) {
                 dockIcon.classList.add("fill-primary/25");
                 dockIcon.classList.add("animate-pulse");
-            } else {
-                dockLabel.classList.add("text-[0px]");
             }
         });
     }
