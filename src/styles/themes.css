@@ -1,103 +1,44 @@
 @plugin "daisyui"{
     root: ":root",
-    themes: coreeatery-light --default, coreeatery-dark --prefersdark;
+    themes: schemeLight --default;
 };
 
 @plugin "daisyui/theme" {
-  name: "coreeatery-light";
+  name: "schemeLight";
   default: true;
   prefersdark: false;
   color-scheme: light;
 
-  /* Base: Menggunakan High Lightness untuk kesan bersih.
-     L diturunkan sedikit pada base-200/300 untuk menciptakan hierarki visual (depth)
-     tanpa membuat warna terlihat kotor.
-  */
-  --color-base-100: oklch(99% 0.005 60);      /* Ultra Clean White dengan sedikit tint hangat */
-  --color-base-200: oklch(96% 0.01 60);       /* Soft Grey-Cream untuk background section */
-  --color-base-300: oklch(92% 0.015 60);      /* Untuk border atau hover state */
-  --color-base-content: oklch(20% 0.015 20);  /* Kontras tinggi untuk readability */
+  /* Base: Ultra clean khas Shadcn namun dengan sedikit warmth agar merah tidak terlihat kaku */
+  --color-base-100: oklch(100% 0 0);          /* Putih bersih */
+  --color-base-200: oklch(97% 0.005 31);      /* Slate-50 dengan tint merah mikro */
+  --color-base-300: oklch(92% 0.01 31);       /* Border subtle (Slate-200) */
+  --color-base-content: oklch(15% 0.02 31);   /* Teks utama (Slate-950) */
 
-  /* Primary: Merah Vibrant.
-     Di light mode, kita perlu memastikan merah ini tidak terlalu gelap agar tidak
-     terkesan "berat" (heavy) saat bersanding dengan putih.
-  */
-  --color-primary: oklch(60% 0.22 25.5);
-  --color-primary-content: oklch(100% 0 0);
+  /* Primary: #ad2f21 (Tuned for Lightness) */
+  /* L: 52% agar kontras teks putih tetap aman */
+  --color-primary: oklch(52% 0.17 31);
+  --color-primary-content: oklch(99% 0 0);
 
-  /* Secondary: Deep Charcoal.
-     Berfungsi sebagai penyeimbang (anchor) desain.
-  */
-  --color-secondary: oklch(25% 0.03 20);
-  --color-secondary-content: oklch(98% 0.005 20);
+  /* Secondary: Slate-800 untuk aksen profesional */
+  --color-secondary: oklch(25% 0.03 260);
+  --color-secondary-content: oklch(98% 0 0);
 
-  /* Accent: Gold/Stone Wash. 
-     Dibuat lebih soft agar tidak bertabrakan dengan Primary Red.
-  */
-  --color-accent: oklch(88% 0.05 85);
-  --color-accent-content: oklch(30% 0.03 20);
+  /* Accent: Stone Wash (Subtle greyish-red) */
+  --color-accent: oklch(92% 0.02 31);
+  --color-accent-content: oklch(35% 0.03 31);
 
-  /* Neutral: Dioptimasi untuk UI elements seperti disabled states atau borders.
-  */
-  --color-neutral: oklch(45% 0.02 20);
-  --color-neutral-content: oklch(98% 0 0);
+  /* Neutral: UI Elements */
+  --color-neutral: oklch(40% 0.02 31);
+  --color-neutral-content: oklch(100% 0 0);
 
-  /* Utility Colors: Menggunakan standar vibrance Light Mode 
-     agar user langsung mengenali status (Success/Error).
-  */
+  /* Utility Colors */
   --color-info: oklch(72% 0.14 245);
   --color-success: oklch(75% 0.16 150);
   --color-warning: oklch(85% 0.18 90);
   --color-error: oklch(65% 0.23 25);
 
-  /* Border & Radius: Best practice untuk Modern Clean UI */
-  --radius-selector: 1rem;
-  --radius-field: 0.5rem;   /* Sedikit lebih besar untuk kenyamanan klik (UX) */
-  --radius-box: 1rem;      /* Konsisten dengan tren desain rounded modern */
-  
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
-}
-
-@plugin "daisyui/theme" {
-  name: "coreeatery-dark";
-  default: false;
-  prefersdark: true;
-  color-scheme: dark;
-
-  /* Base: Mengambil tone Cream/Off-white dari background logo */
-  --color-base-100: oklch(97% 0.01 60);       /* Cream sangat muda */
-  --color-base-200: oklch(94% 0.02 60);       /* Sedikit lebih gelap untuk kedalaman */
-  --color-base-300: oklch(90% 0.03 60);
-  --color-base-content: oklch(15% 0.02 20);   /* Hampir Hitam untuk teks utama */
-
-  /* Primary: Merah Vibrant dari titik tengah logo */
-  /* L: 55%, C: 0.22 (Chroma tinggi untuk saturasi), H: 25.5 (Hue Merah) */
-  --color-primary: oklch(55% 0.22 25.5);
-  --color-primary-content: oklch(98% 0.01 25.5);
-
-  /* Secondary: Hitam Arang / Marmer dari tekstur logo */
-  --color-secondary: oklch(25% 0.02 20);      /* Hitam pekat yang elegan */
-  --color-secondary-content: oklch(95% 0.01 20);
-
-  /* Accent: Stone/Marble Highlight */
-  --color-accent: oklch(85% 0.02 60);
-  --color-accent-content: oklch(20% 0.02 20);
-
-  /* Neutral: Untuk elemen UI yang tidak terlalu menonjol */
-  --color-neutral: oklch(35% 0.02 20);
-  --color-neutral-content: oklch(95% 0.01 20);
-
-  /* Utility Colors (Standar DaisyUI dengan tuning ke arah Warm) */
-  --color-info: oklch(70% 0.12 230);
-  --color-success: oklch(65% 0.15 145);
-  --color-warning: oklch(80% 0.15 85);
-  --color-error: oklch(60% 0.2 25);
-
-  /* Border & Radius: Sesuai geometri logo yang tegas namun melingkar */
+  /* Design Tokens: Shadcn + Modern Comfort */
   --radius-selector: 1rem;     /* Untuk elemen seperti tab/radio */
   --radius-field: 0.375rem;    /* Untuk input agar terlihat modern */
   --radius-box: 0.75rem;       /* Untuk card agar seimbang dengan logo bulat */
@@ -107,11 +48,4 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
-}
-
-
-@layer base {
-    body {
-        @apply font-sans;
-    }
 }
