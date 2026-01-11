@@ -10,8 +10,6 @@ import { id } from "date-fns/locale";
 import Str from "lodash";
 import { toZonedTime } from "date-fns-tz";
 
-const now = toZonedTime(new Date(), site.timezone);
-
 // Type & Interfaces
 interface content {
     content: HeaderProfileInterface;
@@ -19,13 +17,6 @@ interface content {
 
 // Vars
 const { content } = Astro.props;
-const today = format(now, "EEEE", { locale: id });
-const todayOpeningHours = site.openingHours[Str.lowerCase(today)];
-const isOpen = isWithinInterval(now, {
-    start: todayOpeningHours.open,
-    end: todayOpeningHours.close
-});
-const cafeStatus = isOpen ? "Buka" : "Tutup";
 ---
 
 <section class="relative pt-28 pb-6">
@@ -37,25 +28,18 @@ const cafeStatus = isOpen ? "Buka" : "Tutup";
     <Image
         src={content.bgCover}
         alt={`Background cover ${content.title}`}
-        class="absolute inset-0 w-full h-full object-cover object-center mask-b-from-0 mask-b-to-65"
+        class="absolute inset-0 w-full h-full object-cover object-center mask-b-from-0 mask-b-to-65 animate-in fade-in slide-in-from-top-5 duration-750"
     />
     <div class="flex flex-col items-center">
         <!-- Avatar -->
-        <div class={clsx("avatar indicator")}>
-            <span
-                class={clsx(
-                    "indicator-item indicator-bottom indicator-center badge badge-soft badge-outline font-bold",
-                    isOpen ? "badge-success" : "badge-error"
-                )}>{cafeStatus}</span
-            >
-            <div
-                class={clsx(
-                    "w-24 rounded-full shadow-xl shadow-accent border",
-                    isOpen ? "border-success" : "border-error"
-                )}
-            >
+        <div class={clsx("avatar indicator")} data-profile>
+            <div data-picture class="w-24 rounded-full transition-all duration-500">
                 <Image src={content.profilePicture} alt={`Profile picture ${content.title}`} width={500} height={500} />
             </div>
+            <span
+                data-badge
+                class="indicator-item indicator-bottom indicator-center badge badge-sm badge-soft badge-outline font-bold opacity-0"
+            ></span>
         </div>
         <!-- Tagline -->
         <div class="mt-6 text-center">
@@ -64,3 +48,45 @@ const cafeStatus = isOpen ? "Buka" : "Tutup";
         </div>
     </div>
 </section>
+
+<script>
+    import { site } from "@datas/site";
+    import { format, isPast, isWithinInterval, parse } from "date-fns";
+    import { toZonedTime } from "date-fns-tz";
+    import { id } from "date-fns/locale";
+
+    function checkStatusCafeState() {
+        // Initiation date
+        const now = toZonedTime(new Date(), site.timezone);
+        const today = format(now, "EEEE", { locale: id });
+        const todayOpeningHours = site.openingHours[today.toLowerCase()];
+        // Initiation element
+        const profileElement = document.querySelector<HTMLElement>("[data-profile]");
+        if (!profileElement) return;
+        const profilePicture = profileElement.querySelector("[data-picture]");
+        const profileBadge = profileElement.querySelector("[data-badge]");
+        profileBadge.classList.add("animate-in", "fade-in", "slide-in-from-bottom-20", "duration-500", "animate-once");
+        // Checking cafe status
+        // Badge
+        profileBadge.classList.remove("opacity-0");
+        if (todayOpeningHours.open == "" || todayOpeningHours.close == "") {
+            // Badge
+            profileBadge.innerHTML = "Libur";
+            // Profile
+            profileBadge.classList.add("badge-error");
+            return;
+        }
+
+        const isOpen = isWithinInterval(now, {
+            start: parse(todayOpeningHours.open, "HH:mm", now),
+            end: parse(todayOpeningHours.close, "HH:mm", now)
+        });
+
+        // Badge
+        profileBadge.innerHTML = isOpen ? "Buka" : "Tutup";
+        profileBadge.classList.add(isOpen ? "badge-success" : "badge-error");
+        // Profile
+        profilePicture.classList.add("shadow-[0_0_10px]", ...(isOpen ? ["shadow-success"] : ["shadow-error"]));
+    }
+    document.addEventListener("astro:page-load", checkStatusCafeState);
+</script>

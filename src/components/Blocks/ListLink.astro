@@ -1,6 +1,8 @@
 ---
-import type { BlockInterface, ListLinkInterface } from "@datas/blocks.type";
+import type { ListLinkInterface } from "@datas/blocks.type";
 import clsx from "clsx";
+import { Icon } from "astro-iconify";
+import { Image } from "astro:assets";
 
 // Type & Interfaces
 interface Props {
@@ -18,7 +20,16 @@ const { content } = Astro.props;
                 return (
                     <li>
                         <a href={link.href} class={clsx("btn mx-4", link.style)}>
-                            <link.icon class="me-2" />
+                            {link.icon.type === "icon" && <Icon name={link.icon.name} class={clsx(link.icon.style)} />}
+                            {link.icon.type === "image" && (
+                                <Image
+                                    src={link.icon.name as ImageMetadata}
+                                    alt={`${link.label} dock icon`}
+                                    width={500}
+                                    height={500}
+                                    class={clsx("aspect-square object-center object-contain", link.icon.style)}
+                                />
+                            )}
                             {link.label}
                         </a>
                     </li>

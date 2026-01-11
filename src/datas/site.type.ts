@@ -13,7 +13,7 @@ export interface SiteInterface {
     name: string;
     description: string;
     slogan: string;
-    openingHours: Record<Days, { open?: Date; close?: Date }>;
+    openingHours: Record<Days, any>;
     picture: {
         favicon: string;
         logo: ImageMetadata;

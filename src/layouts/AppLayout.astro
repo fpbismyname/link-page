@@ -5,9 +5,6 @@ import CommonHead from "@components/CommonHead.astro";
 import { FadeIn } from "../utils/transition-animate/fade-in";
 import "../styles/global.css";
 import "toastify-js/src/toastify.css";
-import { toZonedTime } from "date-fns-tz";
-
-const now = toZonedTime(new Date(), site.timezone);
 
 // Type & Interfaces
 interface Props {

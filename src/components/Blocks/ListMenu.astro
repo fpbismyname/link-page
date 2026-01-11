@@ -1,8 +1,8 @@
 ---
 import type { ListMenuInterface } from "@datas/blocks.type";
 import { Image } from "astro:assets";
-import ShareIcon from "@icons/lucide/share2.svg";
 import clsx from "clsx";
+import { Icon } from "astro-iconify";
 
 // Type & Interfaces
 interface Props {
@@ -30,7 +30,7 @@ const { content } = Astro.props;
                         </div>
                         <div>
                             <button
-                                class="btn btn-soft btn-circle tooltip tooltip-left"
+                                class="btn btn-soft btn-circle tooltip tooltip-left tooltip-primary"
                                 data-tip="Bagikan menu"
                                 data-action="copyLinkMenu"
                                 data-params={JSON.stringify({
@@ -39,7 +39,7 @@ const { content } = Astro.props;
                                     href: item.id
                                 })}
                             >
-                                <ShareIcon />
+                                <Icon name="lucide:share-2" class="w-6" />
                             </button>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ const { content } = Astro.props;
                                             alt={`Menu ${item.title} - ${index}`}
                                             width={image.width}
                                             height={image.height}
-                                            class="rounded-box shadow shadow-secondary/35 aspect-auto"
+                                            class="rounded-box shadow-md shadow-base-content/35 aspect-auto"
                                             loading="lazy"
                                         />
                                     );

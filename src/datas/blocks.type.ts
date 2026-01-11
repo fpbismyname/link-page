@@ -3,7 +3,11 @@ import type { itemType, MenuInterface } from "./site.type";
 
 export interface DockMenuInterface {
     label: string;
-    icon: SvgComponent;
+    icon: {
+        name: string | ImageMetadata;
+        style?: string;
+        type: iconType;
+    };
     href: string;
 }
 
@@ -12,6 +16,9 @@ type BlockType = "header-profile" | "header" | "list-link" | "list-menu" | "foot
 export interface BlockInterface extends Record<string, any> {
     [key: string]: BlockItem[];
 }
+
+type iconType = "image" | "icon";
+
 export interface BlockItem {
     type: BlockType;
     content:
@@ -39,7 +46,12 @@ export interface ListLinkInterface {
     label: string;
     href: string;
     external: boolean;
-    icon?: SvgComponent;
+    icon?: {
+        name: string | ImageMetadata;
+        style: string;
+        type: iconType;
+    };
+    action?: string;
     style?: string;
 }
 
@@ -50,7 +62,11 @@ export interface FooterTextInterface {
 }
 
 export interface FabInterface {
-    icon: SvgComponent;
+    icon: {
+        name: string | ImageMetadata;
+        style?: string;
+        type: iconType;
+    };
     children: {
         title: string;
         children: Array<Partial<Record<"icon" | "label" | "action" | "href" | "type", any>>>;

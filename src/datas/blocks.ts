@@ -1,8 +1,3 @@
-import BerandaIcon from "@icons/lucide/house.svg";
-import MenuCategory from "@icons/lucide/menu.svg";
-import MenuIcon from "@icons/lucide/clipboard-list.svg";
-import ArrowUpFromLine from "@icons/lucide/arrow-up-from-line.svg";
-
 import type {
     BlockInterface,
     DockMenuInterface,
@@ -18,12 +13,20 @@ import { menu, site } from "./site";
 export const DockMenu: DockMenuInterface[] = [
     {
         label: "Beranda",
-        icon: BerandaIcon,
+        icon: {
+            name: "lucide:house",
+            type: "icon",
+            style: ""
+        },
         href: "/"
     },
     {
         label: "Menu",
-        icon: MenuIcon,
+        icon: {
+            name: "lucide:clipboard-list",
+            type: "icon",
+            style: ""
+        },
         href: "/menu"
     }
 ];
@@ -64,7 +67,11 @@ export const Blocks: BlockInterface = {
         {
             type: "fab",
             content: {
-                icon: MenuCategory,
+                icon: {
+                    name: "lucide:menu",
+                    type: "icon",
+                    style: "w-6"
+                },
                 children: {
                     title: "Kategori menu",
                     children: menu.map((item) => ({

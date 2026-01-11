@@ -1,12 +1,9 @@
 ---
 import { site } from "@datas/site";
 import clsx from "clsx";
-import XIcon from "@icons/lucide/x.svg";
-import CalendarClock from "@icons/lucide/calendar-clock.svg";
 import Str from "lodash";
-import { format } from "date-fns";
-import { id } from "date-fns/locale";
 import { toZonedTime } from "date-fns-tz";
+import { Icon } from "astro-iconify";
 
 const now = toZonedTime(new Date(), site.timezone);
 
@@ -21,8 +18,6 @@ const openingHours = Object.entries(site.openingHours).map(([day, times]) => ({
     open: times.open,
     close: times.close
 }));
-
-const today = format(now, "EEEE", { locale: id });
 ---
 
 <button
@@ -30,64 +25,41 @@ const today = format(now, "EEEE", { locale: id });
     {...rest}
     onclick="modalOpeningHours.showModal()"
 >
-    <CalendarClock />
+    <Icon name="lucide:calendar-clock" class="w-6" />
 </button>
 
 <dialog id="modalOpeningHours" class="modal">
     <div class="modal-box w-full max-w-xs">
         <h3 class="text-xl font-bold mb-6 text-center">
-            <CalendarClock class="inline-flex self-center me-2" />
-            Buka & Tutup
+            <Icon name="lucide:calendar-clock" class="inline me-2 w-6" />
+            Jam buka
         </h3>
         <div class="grid grid-cols-2 gap-4">
             {
                 openingHours.map((item) => {
-                    const isToday = item.day == today.toLowerCase();
-                    if (item.open && item.close) {
-                        const openTime = format(item.open, "HH:mm");
-                        const closeTime = format(item.close, "HH:mm");
-                        return (
-                            <div
-                                class={clsx(
-                                    "p-2 px-4 rounded-box w-full indicator",
-                                    "border border-primary/50",
-                                    isToday ? "border-2" : ""
-                                )}
+                    const isLibur = !item.open || !item.close;
+                    return (
+                        <div class="p-2 px-4 rounded-box w-full indicator border border-primary/50">
+                            <span
+                                data-day={item.day.toLowerCase()}
+                                class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content opacity-0"
                             >
-                                {isToday && (
-                                    <span class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content">
-                                        Hari ini
-                                    </span>
-                                )}
-                                <div>
-                                    <h1 class="text-md font-semibold">{Str.capitalize(item.day)}</h1>
-                                    <small class="text-md">
-                                        {openTime} - {closeTime}
-                                    </small>
-                                </div>
+                                Hari ini
+                            </span>
+                            <div>
+                                <h1 class="text-md font-semibold">{Str.capitalize(item.day)}</h1>
+                                <small class="text-md">{isLibur ? "Libur" : `${item.open} - ${item.close}`}</small>
                             </div>
-                        );
-                    } else {
-                        return (
-                            <div class={clsx("p-2 px-4 rounded-box w-full indicator", "border border-primary/50")}>
-                                {isToday && (
-                                    <span class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content">
-                                        Hari ini
-                                    </span>
-                                )}
-                                <div>
-                                    <h1 class="text-md font-semibold">{Str.capitalize(item.day)}</h1>
-                                    <small>Libur</small>
-                                </div>
-                            </div>
-                        );
-                    }
+                        </div>
+                    );
                 })
             }
         </div>
         <div class="modal-action justify-center">
             <form method="dialog">
-                <button class="btn btn-circle btn-secondary btn-soft"><XIcon /></button>
+                <button class="btn btn-circle btn-secondary btn-soft">
+                    <Icon name="lucide:x" class="w-6" />
+                </button>
             </form>
         </div>
     </div>
@@ -95,3 +67,27 @@ const today = format(now, "EEEE", { locale: id });
         <button>close</button>
     </form>
 </dialog>
+
+<script>
+    import { site } from "@datas/site";
+    import { format } from "date-fns";
+    import { toZonedTime } from "date-fns-tz";
+    import { id } from "date-fns/locale";
+    function checkOpeningHoursState() {
+        // Initiation current days
+        const now = toZonedTime(new Date(), site.timezone);
+        const today = format(now, "EEEE", { locale: id }).toLowerCase();
+        // Initiation elements
+        const badgeEl = document.querySelectorAll<HTMLElement>(`[data-day]`);
+        // Checking days
+        badgeEl.forEach((badge) => {
+            const day = badge.dataset.day;
+            if (!day) return;
+            if (today === day) {
+                badge.parentElement?.classList.add("border-2");
+                badge.classList.remove("opacity-0");
+            }
+        });
+    }
+    document.addEventListener("astro:page-load", checkOpeningHoursState);
+</script>

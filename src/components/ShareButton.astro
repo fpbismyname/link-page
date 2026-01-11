@@ -1,9 +1,8 @@
 ---
 import { site } from "@datas/site";
 import clsx from "clsx";
-import XIcon from "@icons/lucide/x.svg";
-import ShareIcon from "@icons/lucide/share2.svg";
-import Users from "@icons/lucide/users.svg";
+import { Icon } from "astro-iconify";
+import { Image } from "astro:assets";
 
 // Type & Interfaces
 interface Props {
@@ -18,20 +17,30 @@ const { class: customClass, ...rest } = Astro.props;
     {...rest}
     onclick="modalCopy.showModal()"
 >
-    <ShareIcon />
+    <Icon name="lucide:share-2" class="w-6" />
 </button>
 
 <dialog id="modalCopy" class="modal">
     <div class="modal-box w-full max-w-xs">
         <h3 class="text-xl font-bold text-center mb-6">
-            <Users class="inline-flex self-center me-2" /> Ajak temanmu kesini
+            <Icon name="lucide:users" class="inline me-2 w-6" />
+            Ajak temanmu kesini
         </h3>
         <div class="flex flex-col gap-2">
             {
                 site.shareOptions.map((item) => {
                     return (
                         <button class="btn btn-soft btn-primary justify-start" data-action={item.action}>
-                            <item.icon />
+                            {item.icon.type === "icon" && <Icon name={item.icon.name} class={clsx(item.icon.style)} />}
+                            {item.icon.type === "image" && (
+                                <Image
+                                    src={item.icon.name as ImageMetadata}
+                                    alt={`${item.label} dock icon`}
+                                    width={500}
+                                    height={500}
+                                    class={clsx("aspect-square object-center object-contain", item.icon.style)}
+                                />
+                            )}
                             <span>{item.label}</span>
                         </button>
                     );
@@ -40,7 +49,9 @@ const { class: customClass, ...rest } = Astro.props;
         </div>
         <div class="modal-action justify-center">
             <form method="dialog">
-                <button class="btn btn-circle btn-secondary btn-soft"><XIcon /></button>
+                <button class="btn btn-circle btn-secondary btn-soft">
+                    <Icon name="lucide:x" class="w-6" />
+                </button>
             </form>
         </div>
     </div>

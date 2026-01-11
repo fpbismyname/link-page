@@ -1,21 +1,15 @@
 import { set } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import type { MenuInterface, SiteInterface } from "./site.type";
-import ShareIcon from "@icons/lucide/share2.svg";
-import WhatsappIcon from "@icons/simple-icon/whatsapp.svg";
 import Favicon from "@images/brand/favicon.ico";
 import Logo from "@images/brand/logo.jpg";
 import BgCover from "@images/brand/bg-cover.jpg";
-import MapsIcon from "@icons/simple-icon/maps.svg";
-import ReservasiIcon from "@icons/lucide/calendar-days.svg";
-import GojekIcon from "@icons/simple-icon/gojek.svg";
-import InstagramIcon from "@icons/simple-icon/instagram.svg";
 import { filterImportGlobImage } from "../utils/filter-import-glob-image";
+import type { ListLinkInterface } from "./blocks.type";
 
 const currentTimezone = "Asia/Jakarta";
 const now = toZonedTime(new Date(), currentTimezone);
-const reservationTemplate = encodeURIComponent('Halo kak, saya mau reservasi meja ya');
-
+const reservationTemplate = encodeURIComponent("Halo kak, saya mau reservasi meja ya");
 
 export const site: SiteInterface = {
     timezone: currentTimezone,
@@ -30,77 +24,101 @@ export const site: SiteInterface = {
     },
     openingHours: {
         senin: {
-            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         selasa: {
-            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         rabu: {
-            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         kamis: {
-            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         jumat: {
-            open: set(now, { hours: 11, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 22, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         sabtu: {
-            open: set(now, { hours: 9, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 24, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         },
         minggu: {
-            open: set(now, { hours: 9, minutes: 0, seconds: 0 }),
-            close: set(now, { hours: 24, minutes: 0, seconds: 0 })
+            open: "11:00",
+            close: "22:00"
         }
     },
     shareOptions: [
         {
             label: "Bagikan Link",
             action: "copyLink",
-            icon: ShareIcon
+            icon: {
+                name: "lucide:share-2",
+                type: "icon",
+                style: "w-6"
+            }
         },
         {
             label: "Bagikan ke Whatsapp",
             action: "shareToWhatsapp",
-            icon: WhatsappIcon
+            icon: {
+                name: "mdi:whatsapp",
+                type: "icon",
+                style: "w-6"
+            }
         }
-    ],
+    ] as ListLinkInterface[],
     shareMessage: `Baeco Cafe - Cianjur\n`,
     links: [
         {
             label: "Kunjungi Lokasi Kami",
             href: "https://maps.app.goo.gl/YYEsydhmmdkhYs4K9",
             external: true,
-            icon: MapsIcon,
+            icon: {
+                name: "mdi:google-maps",
+                style: "w-6",
+                type: "icon"
+            },
             style: "justify-start btn-primary"
         },
         {
             label: "Reservasi Meja",
             href: `https://wa.me/6282221177319?text=${reservationTemplate}`,
             external: true,
-            icon: ReservasiIcon,
+            icon: {
+                name: "lucide:calendar-days",
+                style: "w-6",
+                type: "icon"
+            },
             style: "justify-start btn-soft btn-primary"
         },
         {
             label: "Pesan di GoFood",
             href: "https://gofood.link/a/MyQECUq",
             external: true,
-            icon: GojekIcon,
+            icon: {
+                name: "simple-icons:gojek",
+                style: "w-6",
+                type: "icon"
+            },
             style: "justify-start btn-soft btn-primary"
         },
         {
             label: "Instagram Kami",
             href: "https://www.instagram.com/__baeco?igsh=MW5vemc3MG5jdTduOQ==",
             external: true,
-            icon: InstagramIcon,
+            icon: {
+                name: "mdi:instagram",
+                style: "w-6",
+                type: "icon"
+            },
             style: "justify-start btn-soft btn-primary"
         }
-    ],
+    ] as ListLinkInterface[],
     footer: `© ${now.getFullYear()} Baeco cafe - Cianjur`
 };
 

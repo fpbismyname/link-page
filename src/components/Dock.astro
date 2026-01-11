@@ -1,5 +1,8 @@
 ---
 import { DockMenu } from "@datas/blocks";
+import { Icon } from "astro-iconify";
+import { Image } from "astro:assets";
+import clsx from "clsx";
 ---
 
 <nav class="dock bg-base-200 max-w-md mx-auto z-10" transition:animate="none">
@@ -7,9 +10,19 @@ import { DockMenu } from "@datas/blocks";
         DockMenu.map((item) => {
             return (
                 <a href={item.href} class="text-base-content">
-                    <item.icon class="dock-icon" />
+                    {item.icon.type === "icon" && (
+                        <Icon name={item.icon.name} class={clsx("dock-icon w-6", item.icon.style)} />
+                    )}
+                    {item.icon.type === "image" && (
+                        <Image
+                            src={item.icon.name as ImageMetadata}
+                            alt={`${item.label} dock icon`}
+                            width={500}
+                            height={500}
+                            class={clsx("aspect-square object-center object-contain", item.icon.style)}
+                        />
+                    )}
                     <span class="dock-label">{item.label}</span>
-                    <div data-dock-spinner />
                 </a>
             );
         })
@@ -28,16 +41,16 @@ import { DockMenu } from "@datas/blocks";
 
             if (currentRoute.pathname === elHref.pathname) {
                 dockIcon.classList.add("fill-primary/25");
-dockLabel.classList.add("font-bold");
+                dockLabel.classList.add("font-bold");
             }
         });
     }
+
     function loadingDock(params) {
         const targetRoute = params.to.pathname;
         const DockEl = document.querySelectorAll(".dock a");
         DockEl.forEach((el) => {
             const elHref = new URL(el.href);
-            const dockLabel = el.querySelector(".dock-label");
             const dockIcon = el.querySelector(".dock-icon");
 
             if (targetRoute === elHref.pathname) {

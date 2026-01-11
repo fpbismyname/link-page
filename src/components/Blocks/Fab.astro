@@ -1,5 +1,8 @@
 ---
 import type { FabInterface } from "@datas/blocks.type";
+import Icon from "astro-iconify";
+import { Image } from "astro:assets";
+import clsx from "clsx";
 
 interface Props {
     content: FabInterface;
@@ -9,10 +12,21 @@ const { content } = Astro.props;
 ---
 
 <div class="fixed w-full max-w-md h-full pointer-events-none">
-    <div class="relative flex flex-col w-full h-full items-end justify-end py-24 px-8">
+    <div class="relative flex flex-col w-full h-full items-end justify-end py-20 px-4">
         <div class="dropdown dropdown-end dropdown-top pointer-events-auto">
             <div tabindex="0" role="button" class="btn btn-xl btn-primary btn-circle">
-                <content.icon />
+                {content.icon.type === "icon" && <Icon name={content.icon.name} class={clsx(content.icon.style)} />}
+                {
+                    content.icon.type === "image" && (
+                        <Image
+                            src={content.icon.name as ImageMetadata}
+                            alt="Fab"
+                            width={500}
+                            height={500}
+                            class={clsx("aspect-square object-center object-contain", content.icon.style)}
+                        />
+                    )
+                }
             </div>
             <ul
                 class="dropdown-content menu bg-base-100 shadow-md shadow-base-content/35 w-64 mb-4 rounded-box overflow-y-auto"
