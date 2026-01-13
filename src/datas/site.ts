@@ -9,9 +9,10 @@ import type { ListLinkInterface } from "./blocks.type";
 
 const currentTimezone = "Asia/Jakarta";
 const cafeName = "CatsCafe";
+const reservationMessage = `Halo kak, saya mau reservasi meja ya`;
 
 const now = toZonedTime(new Date(), currentTimezone);
-const reservationTemplate = encodeURIComponent("Halo kak, saya mau reservasi meja ya");
+const reservationTemplate = encodeURIComponent(reservationMessage);
 
 export const site: SiteInterface = {
     timezone: currentTimezone,
