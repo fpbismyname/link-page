@@ -1,22 +1,24 @@
 import { set } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import type { MenuInterface, SiteInterface } from "./site.type";
-import Favicon from "@images/brand/favicon.ico";
+import Favicon from "@images/brand/favicon.png";
 import Logo from "@images/brand/logo.jpg";
 import BgCover from "@images/brand/bg-cover.jpg";
-import { filterImportGlobImage } from "../utils/filter-import-glob-image";
+import { filterImport } from "../utils/filters";
 import type { ListLinkInterface } from "./blocks.type";
 
 const currentTimezone = "Asia/Jakarta";
+const cafeName = "CatsCafe";
+
 const now = toZonedTime(new Date(), currentTimezone);
 const reservationTemplate = encodeURIComponent("Halo kak, saya mau reservasi meja ya");
 
 export const site: SiteInterface = {
     timezone: currentTimezone,
     lang: "id",
-    name: "Baeco Cafe",
+    name: cafeName,
     description: "",
-    slogan: "Time together",
+    slogan: "Coffee & Lounge",
     picture: {
         logo: Logo,
         favicon: Favicon,
@@ -24,32 +26,32 @@ export const site: SiteInterface = {
     },
     openingHours: {
         senin: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         selasa: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         rabu: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         kamis: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         jumat: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         sabtu: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         },
         minggu: {
-            open: "11:00",
-            close: "22:00"
+            open: "09:00",
+            close: "21:00"
         }
     },
     shareOptions: [
@@ -72,7 +74,7 @@ export const site: SiteInterface = {
             }
         }
     ] as ListLinkInterface[],
-    shareMessage: `Baeco Cafe - Cianjur\n`,
+    shareMessage: `${cafeName} - Cianjur\n`,
     links: [
         {
             label: "Kunjungi Lokasi Kami",
@@ -119,11 +121,11 @@ export const site: SiteInterface = {
             style: "justify-start btn-soft btn-primary"
         }
     ] as ListLinkInterface[],
-    footer: `© ${now.getFullYear()} Baeco cafe - Cianjur`
+    footer: `© ${now.getFullYear()} ${cafeName} - Cianjur`
 };
 
-const AllMenu: [string, ImageMetadata][] = Object.entries(
-    import.meta.glob("/src/assets/images/menu/*.jpg", {
+const AllMenu = Object.entries(
+    import.meta.glob("../assets/images/menu/*.jpg", {
         eager: true,
         import: "default"
     })
@@ -131,81 +133,30 @@ const AllMenu: [string, ImageMetadata][] = Object.entries(
 
 export const menu: MenuInterface[] = [
     {
-        id: "nusantara",
-        title: "Nusantara",
-        type: "images",
-        children: filterImportGlobImage("nusantara", AllMenu)
+        id: "coffee",
+        type: "text",
+        title: "Coffee",
+        description: "Our signature housebrew coffee.",
+        children: [
+            {
+                name: "Americano",
+                price: "23K"
+            },
+            {
+                name: "Espresso",
+                price: "23K"
+            },
+            {
+                name: "Cappucino",
+                price: "23K"
+            }
+        ]
     },
     {
-        id: "habanero-signature",
-        title: "Habanero Signature",
+        id: "Another",
         type: "images",
-        children: filterImportGlobImage("habanero-signature", AllMenu)
-    },
-    {
-        id: "snacks",
-        title: "Snacks",
-        type: "images",
-        children: filterImportGlobImage("snacks", AllMenu)
-    },
-    {
-        id: "dessert",
-        title: "Dessert",
-        type: "images",
-        children: filterImportGlobImage("dessert", AllMenu)
-    },
-    {
-        id: "signature-ice-cream",
-        title: "Signature Ice cream",
-        type: "images",
-        children: filterImportGlobImage("signature-ice-cream", AllMenu)
-    },
-    {
-        id: "caffeine-addict",
-        title: "Caffeine Addict",
-        type: "images",
-        children: filterImportGlobImage("caffeine-addict", AllMenu)
-    },
-    {
-        id: "malika-coffee-latte",
-        title: "Malika Coffee Latte",
-        type: "images",
-        children: filterImportGlobImage("malika-coffee-latte", AllMenu)
-    },
-    {
-        id: "dpollen",
-        title: "D'Pollen",
-        type: "images",
-        children: filterImportGlobImage("dpollen", AllMenu)
-    },
-    {
-        id: "mix-it-up",
-        title: "Mix It Up",
-        type: "images",
-        children: filterImportGlobImage("mix-it-up", AllMenu)
-    },
-    {
-        id: "summer-breeze",
-        title: "Summer Breeze",
-        type: "images",
-        children: filterImportGlobImage("summer-breeze", AllMenu)
-    },
-    {
-        id: "the-last-supper",
-        title: "The Last Supper",
-        type: "images",
-        children: filterImportGlobImage("the-last-supper", AllMenu)
-    },
-    {
-        id: "shizuoka-japanese-matcha",
-        title: "Shizuoka Japanese Matcha",
-        type: "images",
-        children: filterImportGlobImage("shizuoka-japanese-matcha", AllMenu)
-    },
-    {
-        id: "paket-tahun-baru",
-        title: "Paket Tahun Baru",
-        type: "images",
-        children: filterImportGlobImage("paket-tahun-baru", AllMenu)
+        title: "Another Menu",
+        description: "All meals, snacks, and beverage is here.",
+        children: filterImport("another-", AllMenu)
     }
 ];

@@ -39,7 +39,7 @@ const openingHours = Object.entries(site.openingHours).map(([day, times]) => ({
                 openingHours.map((item) => {
                     const isLibur = !item.open || !item.close;
                     return (
-                        <div class="p-2 px-4 rounded-box w-full indicator border border-primary/50">
+                        <div class="p-2 px-4 rounded-box w-full indicator border border-primary/50 text-primary">
                             <span
                                 data-day={item.day.toLowerCase()}
                                 class="indicator-item indicator-center indicator-bottom badge badge-xs badge-primary text-primary-content opacity-0"

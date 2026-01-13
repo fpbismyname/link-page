@@ -15,7 +15,7 @@ export interface SiteInterface {
     slogan: string;
     openingHours: Record<Days, any>;
     picture: {
-        favicon: string;
+        favicon: ImageMetadata;
         logo: ImageMetadata;
         bgCover?: ImageMetadata;
     };

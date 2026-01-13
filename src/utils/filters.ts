@@ -1,8 +1,8 @@
-export const filterImportGlobImage = (string: string, data: [string, ImageMetadata][]) => {
-    return data
+export const filterImport = (nameFile: string, datas: [string, any][]) => {
+    return datas
         .filter(([src, _]) => {
             const fileName = src.split("/").pop()?.replace(".jpg", "");
-            return fileName.includes(string);
+            return fileName.includes(nameFile);
         })
         .sort(([a], [b]) => {
             const getNum = (p: string) => Number(p.match(/(\d+)/)?.[1] ?? 0);

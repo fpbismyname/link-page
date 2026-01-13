@@ -10,7 +10,7 @@ const anim: TransitionAnimationPair = {
     new: {
         name: "fade-in",
         duration: 300,
-        easing: "ease-in"
+        easing: "ease-out"
     }
 };
 

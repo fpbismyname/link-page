@@ -19,9 +19,10 @@ import clsx from "clsx";
                             alt={`${item.label} dock icon`}
                             width={500}
                             height={500}
-                            class={clsx("aspect-square object-center object-contain", item.icon.style)}
+                            class={clsx("dock-icon", "aspect-square object-center object-contain", item.icon.style)}
                         />
                     )}
+                    <span class="dock-loader transition-all duration-1000 h-0" />
                     <span class="dock-label">{item.label}</span>
                 </a>
             );
@@ -35,13 +36,12 @@ import clsx from "clsx";
         const DockEl = document.querySelectorAll(".dock a");
         DockEl.forEach((el) => {
             const elHref = new URL(el.href);
-            const dockLabel = el.querySelector(".dock-label");
-            dockLabel.classList.remove("hidden");
             const dockIcon = el.querySelector(".dock-icon");
+            const dockLabel = el.querySelector(".dock-label");
 
             if (currentRoute.pathname === elHref.pathname) {
-                dockIcon.classList.add("fill-primary/25");
-                dockLabel.classList.add("font-bold");
+                dockLabel.classList.add("font-bold", "text-primary");
+                dockIcon.classList.add("text-primary");
             }
         });
     }
@@ -52,10 +52,12 @@ import clsx from "clsx";
         DockEl.forEach((el) => {
             const elHref = new URL(el.href);
             const dockIcon = el.querySelector(".dock-icon");
+            const dockLoader = el.querySelector(".dock-loader");
 
             if (targetRoute === elHref.pathname) {
-                dockIcon.classList.add("fill-primary/25");
-                dockIcon.classList.add("animate-pulse");
+                dockIcon.classList.add("hidden");
+                dockLoader.classList.remove("h-0");
+                dockLoader.classList.add("loading", "loading-spinner", "text-primary");
             }
         });
     }

@@ -59,12 +59,6 @@ export const Blocks: BlockInterface = {
             content: menu as ListMenuInterface[]
         },
         {
-            type: "footer-text",
-            content: {
-                text: "Selamat menikmati hidangan kami."
-            } as FooterTextInterface
-        },
-        {
             type: "fab",
             content: {
                 icon: {
